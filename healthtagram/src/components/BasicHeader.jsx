@@ -2,16 +2,16 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const leftArrow = require('../assets/icons/leftArrow.png');
+// const leftArrow = require('../assets/icons/leftArrow.png');
 
 const BasicHeader = ({ title }) => {
     const navigation = useNavigation();
 
     return (
         <View style={styles.headerWrapper}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            {/* <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image source={leftArrow} style={styles.backButton} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <Text style={styles.headerTitle}>{title}</Text>
             <View style={styles.backButton} />
         </View>

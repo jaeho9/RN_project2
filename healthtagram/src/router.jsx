@@ -1,35 +1,49 @@
 import React from 'react';
 import { View } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import CustomBottomTab from './components/CustomBottomTab';
 
-import ChatScreen from './pages/ChatScreen';
 import Splash from './pages/Splash';
-import AnimateExample from './pages/AnimateExample';
-import Detail from './pages/Detail';
-import BasicCalendar from './pages/BasicCalendar';
-import Settings from './pages/Settings';
 import Home from './pages/Home';
-import Notice from './pages/Notice';
-import NoticeDetail from './pages/NoticeDetail';
-import CustomCameraRoll from './components/CustomCameraRoll';
-import VideoPlayer from './pages/VideoPlayer';
-import NeighborhoodList from './pages/NeighborhoodList';
-import LocationBasedList from './pages/LocationBasedList';
+import Search from './pages/Search';
+import Add from './pages/Add';
+import Play from './pages/Play';
+import Mypage from './pages/Mypage';
+import SearchList from './pages/SearchList';
+import Follower from './pages/Follower';
+import ChatScreen from './pages/ChatScreen';
 
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const renderTabBar = (props) => <CustomBottomTab {...props} />
+
+const SearchTab = () => {
+    return (
+        <Stack.Navigator screenOptions={{
+            headerShown: false
+        }}>
+            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen name="SearchList" component={SearchList} />
+        </Stack.Navigator>
+    )
+}
 
 const MainTab = () => {
     return (
-        <Tab.Navigator screenOptions={{
-            headerShown: false
+        <Tab.Navigator 
+            tabBar={renderTabBar}    
+            screenOptions={{
+                headerShown: false,
         }}>
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Chat" component={ChatScreen} />
-            <Tab.Screen name="BasicCallendar" component={BasicCalendar}/>
-            <Tab.Screen name="Settings" component={Settings} />
+            <Tab.Screen name="홈" component={Home} />
+            <Tab.Screen name="검색" component={SearchTab} />
+            <Tab.Screen name="추가" component={Add} />
+            <Tab.Screen name="채팅" component={ChatScreen} />
+            <Tab.Screen name="마이페이지" component={Mypage} />
+            
         </Tab.Navigator>
 
     )
@@ -42,12 +56,7 @@ const Router = () => {
         }}>
             <Stack.Screen name="Splash" component={Splash} options={{ animation: 'fade_from_bottom'}} />
             <Stack.Screen name="MainTab" component={MainTab} />
-            <Stack.Screen name='Detail' component={Detail} />
-            <Stack.Screen name='Notice' component={Notice} />
-            <Stack.Screen name='NoticeDetail' component={NoticeDetail} />
-            <Stack.Screen name='LocationBasedList' component={LocationBasedList} />
-            <Stack.Screen name='NeighborhoodList' component={NeighborhoodList} />
-
+            <Stack.Screen name="Follower" component={Follower} />
         </Stack.Navigator>
     )
 }
